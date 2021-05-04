@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Listado de coches</title>
+
+	<script>
+'use strict'
+
+class Coche{
+	marca='';
+	modelo='';
+	anyo_fabricacion= 0;
+
+	constructor(_marca, _modelo, _anyo_fabricacion){
+		this.marca=marca;
+		this.modelo=modelo;
+		this.anyo_fabricacion=_anyo_fabricacion;
+	}
+	getMarca(){
+		return this.marca;
+	}
+	getModelo(){
+		return this.modelo;
+	}
+	getAnyo(){
+		return this.anyo_fabricacion;
+	}
+}
+
+		let container=document.getElementById('container');
+
+		let tabla= document.createElement('table');
+		tabla.setAttribute('border', 1);
+		tabla.setAttribute('style', 'border-collapse:collapse');
+
+		let thead= document.createElement('thead');
+		let thead_names= ['Marca', 'Modelo', 'Año de fabricación'];
+
+			for(let n = 0; n<thead_names.lenght; n++){
+				let th = document.createElement('th');
+				th.innerText= thead_names[n];
+				thead.appendChild(th);
+				}
+
+			let arrCoches= Array(new Coche('Hyundai', 'i30', 2017),
+								new Coche('Renault', 'Megane', 2018),
+								new Coche('Seat','Ibiza', 2012),
+								new Coche('Peugeot', 'SUV 3008', 2020)
+					);
+			let tbody= document.createElement('tbody');
+
+			arrCoches.forEach( (coche) => {
+            let fila = document.createElement('tr');
+
+            let arrPropiedades = [coche.getMarca(), 
+                                  coche.getModelo(), 
+                                  coche.getAnyo()];
+
+            arrPropiedades.forEach( (prop) => {
+                let cocheProp = document.createElement('td');
+                cocheProp.innerText = prop;
+                fila.appendChild(cocheProp);
+            });
+
+           
+            tbody.appendChild(fila);
+        });
+		tabla.append(thead,tbody);
+		container.appendChild(tabla);
+
+	</script>
+
+</head>
+
+<body>
+<div id='container'>
+	<h1>Listado de coches</h1>
+</div>
+</body>
+
+</html>
